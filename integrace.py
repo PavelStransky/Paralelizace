@@ -1,6 +1,8 @@
 import numpy as np
 import time
 
+# Nepodstatny komentar
+
 def f(x):
     return np.exp(-x) * np.sin(x)
 
