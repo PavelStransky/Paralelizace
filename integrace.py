@@ -6,6 +6,8 @@ import time
 def f(x):
     return np.exp(-x) * np.sin(x)
 
+def h(x):
+    return x**2
 
 def g(x):
     return 1 / np.sqrt(1 + 1 / np.sqrt(1 + x**3))
