@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import multiprocessing as mp
 import time
 
+import sys
+
 import integrace
 
 def integrator_1d_Pool(V, N, f, a, b):
@@ -37,4 +39,16 @@ def doba_integrace(v_max=8, N=10000000):
 if __name__ == "__main__":
     print("Počet logických jader:", mp.cpu_count())
 
-    doba_integrace(v_max=50, N=5000000)
+    N = 5000000
+
+    if len(sys.argv) > 1:
+        vlakna = int(sys.argv[1])
+
+        pocatecni_cas = time.time()
+        integral_paralelne = integrator_1d_Pool(vlakna, N, integrace.f, 0, np.sqrt(10))
+        doba_vypoctu = time.time() - pocatecni_cas
+
+        print(f"Počet procesorů: {vlakna}, If (parallel) = {integral_paralelne}, doba výpočtu: {doba_vypoctu} s.")
+
+    else:
+        doba_integrace(v_max=50, N=N)
